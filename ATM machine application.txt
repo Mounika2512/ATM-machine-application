@@ -1,0 +1,47 @@
+balance = 10000
+# Function to display the available balance
+def display_balance():
+  print(f"Your current balance is {balance}.")
+# Function to deposit money
+def deposit_money():
+  global balance
+  amount = int(input("Enter the amount to deposit: "))
+  balance += amount
+  print(f"Deposit of {amount} successful.")
+  display_balance()
+# Function to withdraw money
+def withdraw_money():
+  global balance
+  amount = int(input("Enter the amount to withdraw: "))
+  if amount > balance:
+     print("Insufficient balance.")
+  else:
+    # ask for the available notes
+    print("Available notes: 100, 200, 500, 2000")
+    notes = [int(x) for x in input("Enter the notes you require (separated by space): ").split()]
+    total_amount = sum(notes)
+    if total_amount != amount:
+       print("Invalid notes provided.")
+    else:
+      balance -= amount
+      print("Please collect your cash.")
+      display_balance()
+# Main program loop
+while True:
+ print("Welcome to the ATM.")
+ print("1. Display balance")
+ print("2. Deposit money")
+ print("3. Withdraw money")
+ print("4. Quit")
+ choice = int(input("Enter your choice: "))
+ if choice == 1:
+    display_balance()
+ elif choice == 2:
+    deposit_money()
+ elif choice == 3:
+    withdraw_money()
+ elif choice == 4:
+    print("Thank you for using the ATM.")
+    break
+ else:
+    print("Invalid choice.")
